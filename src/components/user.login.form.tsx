@@ -1,6 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
+import { authenticate } from '@/lib/actions';
 
 import { cn } from '@/lib/utils';
 import { Icons } from './icons';
@@ -11,20 +13,12 @@ import { Button } from './ui/button';
 interface UserLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserLoginForm({ className, ...props }: UserLoginFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  const { pending } = useFormStatus();
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
-      <form onSubmit={onSubmit}>
+      <form action={dispatch}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label htmlFor="email">Email</Label>
@@ -35,7 +29,7 @@ export function UserLoginForm({ className, ...props }: UserLoginFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
+              disabled={pending}
             />
           </div>
           <div className="grid gap-1">
@@ -46,15 +40,25 @@ export function UserLoginForm({ className, ...props }: UserLoginFormProps) {
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
-              disabled={isLoading}
+              disabled={pending}
             />
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
+          <Button disabled={pending} aria-disabled={pending}>
+            {pending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
             Log In with Email
           </Button>
+          <div
+            className="flex h-8 items-end space-x-1"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {errorMessage && (
+              <>
+                {/* <ExclamationCircleIcon className="h-5 w-5 text-red-500" /> */}
+                <p className="text-sm text-red-500">{errorMessage}</p>
+              </>
+            )}
+          </div>
         </div>
       </form>
     </div>
