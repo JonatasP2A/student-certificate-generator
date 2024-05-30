@@ -21,7 +21,7 @@ const authConfig = {
         }
       },
       async authorize(credentials, req) {
-        const base_url = process.env.BASE_URL_API;
+        const base_url = process.env.NEXT_PUBLIC_BASE_URL_API;
         const { email, password } = credentials;
         const res = await fetch(`${base_url}/api/Account/login`, {
           method: 'POST',

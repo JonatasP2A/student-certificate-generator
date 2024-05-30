@@ -37,3 +37,9 @@ export const profileSchema = z.object({
 });
 
 export type ProfileFormValues = z.infer<typeof profileSchema>;
+
+export const csvSchema = z.object({
+  Matricula: z.string(),
+})
+
+export type CsvFormValues = z.infer<typeof csvSchema>;

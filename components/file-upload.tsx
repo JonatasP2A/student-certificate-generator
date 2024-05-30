@@ -1,6 +1,6 @@
 'use client';
-import { OurFileRouter } from '@/app/api/uploadthing/core';
-import { UploadDropzone } from '@uploadthing/react';
+
+import CSVReader from 'react-csv-reader';
 import { Trash } from 'lucide-react';
 import Image from 'next/image';
 import { UploadFileResponse } from 'uploadthing/client';
@@ -13,8 +13,6 @@ interface ImageUploadProps {
   value: UploadFileResponse[];
 }
 
-const FILE_MAX_LIMIT = 10;
-
 export default function FileUpload({
   onChange,
   onRemove,
@@ -26,9 +24,7 @@ export default function FileUpload({
     let filteredFiles = files.filter((item) => item.key !== key);
     onRemove(filteredFiles);
   };
-  const onUpdateFile = (newFiles: UploadFileResponse[]) => {
-    onChange([...value, ...newFiles]);
-  };
+
   return (
     <div>
       <div className="mb-4 flex items-center gap-4">
@@ -60,7 +56,16 @@ export default function FileUpload({
           ))}
       </div>
       <div>
-        {value.length < FILE_MAX_LIMIT && (
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <CSVReader
+            parserOptions={{ header: true }}
+            onFileLoaded={(data, fileInfo, originalFile) => {
+              console.dir(data, fileInfo);
+              onChange(originalFile);
+            }}
+          />
+        </div>
+        {/* {value.length < FILE_MAX_LIMIT && (
           <UploadDropzone<OurFileRouter>
             className="ut-label:text-sm ut-allowed-content:ut-uploading:text-red-300 py-2 dark:bg-zinc-800"
             endpoint="imageUploader"
@@ -95,7 +100,7 @@ export default function FileUpload({
               // Do something once upload begins
             }}
           />
-        )}
+        )} */}
       </div>
     </div>
   );
