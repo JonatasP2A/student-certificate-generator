@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "student-certificate-generator",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,18 @@
+meta {
+  name: login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/Account/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "jonatasalves@id.uff.br",
+    "password": "Teste123."
+  }
+}
