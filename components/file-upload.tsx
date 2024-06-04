@@ -5,7 +5,6 @@ import { Trash } from 'lucide-react';
 import Image from 'next/image';
 import { UploadFileResponse } from 'uploadthing/client';
 import { Button } from './ui/button';
-import { useToast } from './ui/use-toast';
 
 interface ImageUploadProps {
   onChange?: any;
@@ -18,7 +17,6 @@ export default function FileUpload({
   onRemove,
   value
 }: ImageUploadProps) {
-  const { toast } = useToast();
   const onDeleteFile = (key: string) => {
     const files = value;
     let filteredFiles = files.filter((item) => item.key !== key);
@@ -60,47 +58,10 @@ export default function FileUpload({
           <CSVReader
             parserOptions={{ header: true }}
             onFileLoaded={(data, fileInfo, originalFile) => {
-              console.dir(data, fileInfo);
               onChange(originalFile);
             }}
           />
         </div>
-        {/* {value.length < FILE_MAX_LIMIT && (
-          <UploadDropzone<OurFileRouter>
-            className="ut-label:text-sm ut-allowed-content:ut-uploading:text-red-300 py-2 dark:bg-zinc-800"
-            endpoint="imageUploader"
-            config={{ mode: 'auto' }}
-            content={{
-              allowedContent({ isUploading }) {
-                if (isUploading)
-                  return (
-                    <>
-                      <p className="mt-2 animate-pulse text-sm text-slate-400">
-                        Img Uploading...
-                      </p>
-                    </>
-                  );
-              }
-            }}
-            onClientUploadComplete={(res) => {
-              // Do something with the response
-              const data: UploadFileResponse[] | undefined = res;
-              if (data) {
-                onUpdateFile(data);
-              }
-            }}
-            onUploadError={(error: Error) => {
-              toast({
-                title: 'Error',
-                variant: 'destructive',
-                description: error.message
-              });
-            }}
-            onUploadBegin={() => {
-              // Do something once upload begins
-            }}
-          />
-        )} */}
       </div>
     </div>
   );

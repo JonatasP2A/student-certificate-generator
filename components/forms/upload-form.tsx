@@ -1,15 +1,17 @@
 'use client';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { CalendarIcon } from '@radix-ui/react-icons';
+import { format } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,8 +22,6 @@ import { Separator } from '@/components/ui/separator';
 import FileUpload from '../file-upload';
 import { useToast } from '../ui/use-toast';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { CalendarIcon } from '@radix-ui/react-icons';
-import { format } from 'date-fns';
 import { Calendar } from '../ui/calendar';
 import { cn } from '@/lib/utils';
 
@@ -39,6 +39,33 @@ type FileFormValues = z.infer<typeof formSchema>;
 
 interface UploadFormProps {}
 
+export const postEventParticipants = async (data: FileFormValues) => {
+  const formData = new FormData();
+
+  formData.append('Titulo', data.title);
+  formData.append('Data', format(data.date, 'MM/dd/yyyy'));
+  formData.append('Local', data.local);
+  formData.append('HorasComplementares', data.additionalHours);
+  formData.append('MatriculaPalestrante', data.speakerRegistration);
+  formData.append('MatriculaOrganizador', data.organizerRegistration);
+  formData.append('file', data.file);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL_API}/api/Evento/SalvaPresencaEvento`,
+    {
+      method: 'POST',
+      cache: 'no-cache',
+      body: formData
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('An error occurred while creating the user');
+  }
+
+  return response;
+};
+
 export const UploadForm: React.FC<UploadFormProps> = () => {
   const router = useRouter();
   const { toast } = useToast();
@@ -52,9 +79,16 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
   const onSubmit = async (data: FileFormValues) => {
     try {
       setLoading(true);
-      router.refresh();
-      router.push(`/dashboard`);
-      console.log(data);
+      const response = await postEventParticipants(data);
+
+      if (response.ok) {
+        toast({
+          title: 'Success!',
+          description: 'Event saved successfully'
+        });
+        router.refresh();
+        router.push(`/dashboard`);
+      }
     } catch (error: any) {
       toast({
         variant: 'destructive',
@@ -96,15 +130,15 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
               control={form.control}
               name="date"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>Date of birth</FormLabel>
+                <FormItem className="mt-auto flex flex-col">
+                  <FormLabel>Date of event</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
                           variant={'outline'}
                           className={cn(
-                            'w-[240px] pl-3 text-left font-normal',
+                            'pl-3 text-left font-normal',
                             !field.value && 'text-muted-foreground'
                           )}
                         >
@@ -129,9 +163,6 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
                       />
                     </PopoverContent>
                   </Popover>
-                  <FormDescription>
-                    Your date of birth is used to calculate your age.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
