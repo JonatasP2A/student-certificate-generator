@@ -48,6 +48,29 @@ const authConfig = {
       }
     })
   ],
+  callbacks: {
+    async jwt({ token, user, trigger, session, account, profile }) {
+
+      if (user) {
+        token.id = user.id
+        token.email = user.email
+        // @ts-ignore
+        token.role = user.role
+        
+        return token
+      }
+      return token
+    },
+
+    async session({ session, token, user, trigger, newSession }) {
+      // @ts-ignore
+      session.user.id = token?.id || ''
+      // @ts-ignore
+      session.user.role = token?.role || ''
+
+      return session
+    },
+  },
   pages: {
     signIn: '/' //sigin page
   },
