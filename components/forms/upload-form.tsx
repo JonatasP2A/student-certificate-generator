@@ -25,13 +25,16 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Calendar } from '../ui/calendar';
 import { cn } from '@/lib/utils';
 
+// regex to check if string only contains numbers
+const regexp = /^\d+$/;
+
 const formSchema = z.object({
   title: z.string(),
   date: z.date(),
   local: z.string(),
-  additionalHours: z.string(),
-  speakerRegistration: z.string(),
-  organizerRegistration: z.string(),
+  additionalHours: z.string().regex(regexp),
+  speakerRegistration: z.string().regex(regexp),
+  organizerRegistration: z.string().regex(regexp),
   file: z.any()
 });
 
@@ -45,9 +48,12 @@ export const postEventParticipants = async (data: FileFormValues) => {
   formData.append('Titulo', data.title);
   formData.append('Data', format(data.date, 'MM/dd/yyyy'));
   formData.append('Local', data.local);
-  formData.append('HorasComplementares', data.additionalHours);
-  formData.append('MatriculaPalestrante', data.speakerRegistration);
-  formData.append('MatriculaOrganizador', data.organizerRegistration);
+  formData.append('HorasComplementares', data.additionalHours.toString());
+  formData.append('MatriculaPalestrante', data.speakerRegistration.toString());
+  formData.append(
+    'MatriculaOrganizador',
+    data.organizerRegistration.toString()
+  );
   formData.append('file', data.file);
 
   const response = await fetch(
@@ -174,7 +180,11 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
                 <FormItem>
                   <FormLabel>Local</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} {...field} />
+                    <Input
+                      disabled={loading}
+                      placeholder="Universidade Federal Fluminense"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -187,7 +197,12 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
                 <FormItem>
                   <FormLabel>Additional hours</FormLabel>
                   <FormControl>
-                    <Input type="number" disabled={loading} {...field} />
+                    <Input
+                      type="number"
+                      disabled={loading}
+                      placeholder="5"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -200,7 +215,12 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
                 <FormItem>
                   <FormLabel>Speaker registration</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} {...field} />
+                    <Input
+                      type="number"
+                      disabled={loading}
+                      placeholder="1234"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -213,7 +233,12 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
                 <FormItem>
                   <FormLabel>Organizer registration</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} {...field} />
+                    <Input
+                      type="number"
+                      disabled={loading}
+                      placeholder="1234"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

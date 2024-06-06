@@ -34,12 +34,14 @@ const authConfig = {
 
         if (data.message === "Login completed") {
           const decoded = jwtDecode<UserDecoded>(data.token);
+          console.log(decoded)
 
           const user = {
             id: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
             name: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
             email: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
             role: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+            exp: decoded.exp
           };
           return user
         }
@@ -56,6 +58,8 @@ const authConfig = {
         token.email = user.email
         // @ts-ignore
         token.role = user.role
+        // @ts-ignore
+        token.exp = user.exp
         
         return token
       }
@@ -67,6 +71,8 @@ const authConfig = {
       session.user.id = token?.id || ''
       // @ts-ignore
       session.user.role = token?.role || ''
+      // @ts-ignore
+      session.expires = new Date(token?.exp * 1000)
 
       return session
     },

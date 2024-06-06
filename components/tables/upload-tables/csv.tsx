@@ -1,25 +1,26 @@
 'use client';
+
 import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
-import { User } from '@/constants/data';
+import { CsvData } from '@/constants/data';
 import { columns } from './columns';
 
-interface ProductsClientProps {
-  data: User[];
+interface CsvUploadDataProps {
+  data: CsvData[];
 }
 
-export const UserClient: React.FC<ProductsClientProps> = ({ data }) => {
+export const CsvUploadData: React.FC<CsvUploadDataProps> = ({ data }) => {
   return (
     <>
       <div className="flex items-start justify-between">
         <Heading
-          title={`Events (${data.length})`}
-          description="Lectures you have already attended"
+          title={`Users (${data.length})`}
+          description="Manage users (Client side table functionalities.)"
         />
       </div>
       <Separator />
-      <DataTable searchKey="name" columns={columns} data={data} />
+      <DataTable searchKey="matricula" columns={columns} data={data} />
     </>
   );
 };

@@ -1,78 +1,80 @@
 'use client';
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { useTheme } from 'next-themes';
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
+} from 'recharts';
 
 const data = [
   {
-    name: 'Jan',
-    total: Math.floor(Math.random() * 5000) + 1000
+    name: '06/02/2024',
+    workload: 0,
+    amt: 0
   },
   {
-    name: 'Feb',
-    total: Math.floor(Math.random() * 5000) + 1000
+    name: '06/03/2024',
+    workload: 5,
+    amt: 5
   },
   {
-    name: 'Mar',
-    total: Math.floor(Math.random() * 5000) + 1000
+    name: '06/03/2024',
+    workload: 15,
+    amt: 15
   },
   {
-    name: 'Apr',
-    total: Math.floor(Math.random() * 5000) + 1000
+    name: '06/04/2024',
+    workload: 20,
+    amt: 20
   },
   {
-    name: 'May',
-    total: Math.floor(Math.random() * 5000) + 1000
+    name: '06/05/2024',
+    workload: 30,
+    amt: 30
   },
   {
-    name: 'Jun',
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: 'Jul',
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: 'Aug',
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: 'Sep',
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: 'Oct',
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: 'Nov',
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: 'Dec',
-    total: Math.floor(Math.random() * 5000) + 1000
+    name: '06/06/2024',
+    workload: 35,
+    amt: 35
   }
 ];
 
 export function Overview() {
+  const { resolvedTheme } = useTheme();
+
+  const strokeColor = resolvedTheme === 'dark' ? '#adfa1d' : '#000';
+
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={data}>
-        <XAxis
-          dataKey="name"
-          stroke="#888888"
-          fontSize={12}
-          tickLine={false}
-          axisLine={false}
+      <LineChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" stroke="#888888" />
+        <YAxis stroke="#888888" />
+        <Tooltip labelStyle={{ color: '#09090B' }} />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="workload"
+          stroke={strokeColor}
+          activeDot={{ r: 8 }}
         />
-        <YAxis
-          stroke="#888888"
-          fontSize={12}
-          tickLine={false}
-          axisLine={false}
-          tickFormatter={(value) => `$${value}`}
-        />
-        <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />
-      </BarChart>
+      </LineChart>
     </ResponsiveContainer>
   );
 }

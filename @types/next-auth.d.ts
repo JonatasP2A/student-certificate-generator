@@ -5,9 +5,8 @@ declare module "next-auth" {
    * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
   interface Session extends DefaultSession {
-    user: {
-      id: string
-      role: string
+    user: DefaultSession["user"] & {
+      role: 'Admin' | 'User';
       /**
        * By default, TypeScript merges new interface properties and overwrites existing ones.
        * In this case, the default session user properties will be overwritten,

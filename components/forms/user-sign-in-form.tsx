@@ -47,7 +47,7 @@ export const postUser = async (data: UserFormValue) => {
       },
       body: JSON.stringify({
         ...data,
-        role: 0
+        role: 1
       })
     }
   );

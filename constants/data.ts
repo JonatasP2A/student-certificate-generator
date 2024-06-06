@@ -1,5 +1,9 @@
 import { NavItem } from '@/types';
 
+export type CsvData = {
+  matricula: string;
+}
+
 export type User = {
   id: number;
   name: string;
@@ -91,7 +95,7 @@ export const users: User[] = [
   }
 ];
 
-export const navItems: NavItem[] = [
+export const userNavItems: NavItem[] = [
   {
     title: 'Dashboard',
     href: '/dashboard',
@@ -99,10 +103,31 @@ export const navItems: NavItem[] = [
     label: 'Dashboard'
   },
   {
-    title: 'User',
-    href: '/dashboard/user',
-    icon: 'user',
-    label: 'user'
+    title: 'Events',
+    href: '/dashboard/events',
+    icon: 'laptop',
+    label: 'events'
+  },
+  {
+    title: 'Profile',
+    href: '/dashboard/profile',
+    icon: 'profile',
+    label: 'profile'
+  }
+];
+
+export const adminNavItems: NavItem[] = [
+  {
+    title: 'Dashboard',
+    href: '/dashboard',
+    icon: 'dashboard',
+    label: 'Dashboard'
+  },
+  {
+    title: 'Events',
+    href: '/dashboard/events',
+    icon: 'laptop',
+    label: 'events'
   },
   {
     title: 'Upload',
@@ -116,4 +141,4 @@ export const navItems: NavItem[] = [
     icon: 'profile',
     label: 'profile'
   }
-];
+]

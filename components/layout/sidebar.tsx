@@ -1,10 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import { DashboardNav } from '@/components/dashboard-nav';
-import { navItems } from '@/constants/data';
+import { userNavItems, adminNavItems } from '@/constants/data';
 import { cn } from '@/lib/utils';
 import { ChevronLeft } from 'lucide-react';
 import { useSidebar } from '@/hooks/useSidebar';
+import { useSession } from 'next-auth/react';
 
 type SidebarProps = {
   className?: string;
@@ -13,6 +14,8 @@ type SidebarProps = {
 export default function Sidebar({ className }: SidebarProps) {
   const { isMinimized, toggle } = useSidebar();
   const [status, setStatus] = useState(false);
+  const { data } = useSession();
+  const navItems = data?.user.role === 'Admin' ? adminNavItems : userNavItems;
 
   const handleToggle = () => {
     setStatus(true);

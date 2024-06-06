@@ -1,6 +1,6 @@
 'use client';
 
-import CSVReader from 'react-csv-reader';
+import CSVReader, { IFileInfo } from 'react-csv-reader';
 import { Trash } from 'lucide-react';
 import Image from 'next/image';
 import { UploadFileResponse } from 'uploadthing/client';
@@ -21,6 +21,15 @@ export default function FileUpload({
     const files = value;
     let filteredFiles = files.filter((item) => item.key !== key);
     onRemove(filteredFiles);
+  };
+
+  const onFileLoaded = (
+    data: any[],
+    fileInfo: IFileInfo,
+    originalFile?: File | undefined
+  ) => {
+    // TODO: verificar csv antes de passar para o onChange
+    onChange(originalFile);
   };
 
   return (
@@ -57,9 +66,7 @@ export default function FileUpload({
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <CSVReader
             parserOptions={{ header: true }}
-            onFileLoaded={(data, fileInfo, originalFile) => {
-              onChange(originalFile);
-            }}
+            onFileLoaded={onFileLoaded}
           />
         </div>
       </div>
