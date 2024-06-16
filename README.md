@@ -20,9 +20,7 @@ This is a starter template using the following stack:
 - Styling - [Tailwind CSS](https://tailwindcss.com)
 - Components - [Shadcn-ui](https://ui.shadcn.com)
 - Schema Validations - [Zod](https://zod.dev)
-- State Management - [Zustand](https://zustand-demo.pmnd.rs)
 - Auth - [Auth.js](https://authjs.dev/)
-- File Uploading - [Uploadthing](https://uploadthing.com)
 - Tables - [Tanstack Tables](https://ui.shadcn.com/docs/components/data-table)
 - Forms - [React Hook Form](https://ui.shadcn.com/docs/components/form)
 - Linting - [ESLint](https://eslint.org)
@@ -36,10 +34,8 @@ _If you are looking for a React admin dashboard starter, here is the [repo](http
 | :-------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------- |
 | [Signup](https://next-shadcn-dashboard-starter.vercel.app/)                       | Authentication with **NextAuth** supports Social logins and email logins(Enter dummy email for demo). |
 | [Dashboard](https://next-shadcn-dashboard-starter.vercel.app/dashboard)           | Cards with recharts graphs for analytics.                                                             |
-| [Users](https://next-shadcn-dashboard-starter.vercel.app/dashboard/user)          | Tanstack tables with user details client side searching, pagination etc                               |
-| [Users/new](https://next-shadcn-dashboard-starter.vercel.app/dashboard/user/new)  | A User Form with Uploadthing to support file uploading with dropzone.                                 |
-| [Upload](https://next-shadcn-dashboard-starter.vercel.app/dashboard/upload)       | Tanstack tables with server side searching, pagination etc).                                          |
-| [Profile](https://next-shadcn-dashboard-starter.vercel.app/dashboard/profile)     | Mutistep dynamic forms using react-hook-form and zod for form validation.                             |
+| [Events](https://next-shadcn-dashboard-starter.vercel.app/dashboard/user)         | Tanstack tables with events details client side searching, pagination                                 |
+| [Upload](https://next-shadcn-dashboard-starter.vercel.app/dashboard/upload)       | A Event Form with Uploadthing to support file uploading with dropzone.                                |
 | [Not Found](https://next-shadcn-dashboard-starter.vercel.app/dashboard/notfound)  | Not Found Page Added in the root level                                                                |
 | -                                                                                 | -                                                                                                     |
 
