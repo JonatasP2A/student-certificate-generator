@@ -4,7 +4,7 @@ import { Certificate } from '@/types/Certificate';
 
 const breadcrumbItems = [{ title: 'Events', link: '/dashboard/events' }];
 
-export async function getCertificates(): Promise<Certificate[]> {
+async function getCertificates(): Promise<Certificate[]> {
   // Fetch data from external API
   const res = await fetch(
     'https://projeto-de-software.onrender.com/api/Certificado/List'
