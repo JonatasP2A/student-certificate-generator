@@ -22,6 +22,7 @@ const formSchema = z
   .object({
     name: z.string(),
     email: z.string().email({ message: 'Enter a valid email address' }),
+    Matricula: z.string(),
     password: z.string(),
     confirmPassword: z.string()
   })
@@ -117,6 +118,24 @@ export default function UserSignInForm() {
                   <Input
                     type="email"
                     placeholder="Enter your email..."
+                    disabled={loading}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="Matricula"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Registration</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Registration"
                     disabled={loading}
                     {...field}
                   />
