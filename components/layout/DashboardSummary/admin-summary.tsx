@@ -1,8 +1,24 @@
 'use client';
 
+import { Certificate } from '@/types/Certificate';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
+import { useSession } from 'next-auth/react';
 
-export function AdminSummary() {
+type AdminSummaryProps = {
+  data: Certificate[];
+};
+
+export function AdminSummary({ data }: AdminSummaryProps) {
+  const { data: session } = useSession();
+
+  const teacherData = data.filter(
+    (d) => d.nomePalestrante === session?.user.name
+  );
+  const hoursGiven = teacherData.reduce(
+    (acc, curr) => acc + curr.quantidadeHoras,
+    0
+  );
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
       <Card>
@@ -22,7 +38,9 @@ export function AdminSummary() {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">5 lecture(s)</div>
+          <div className="text-2xl font-bold">
+            {teacherData.length} lecture(s)
+          </div>
         </CardContent>
       </Card>
       <Card>
@@ -46,7 +64,7 @@ export function AdminSummary() {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">10 hour(s)</div>
+          <div className="text-2xl font-bold">{hoursGiven} hour(s)</div>
         </CardContent>
       </Card>
     </div>

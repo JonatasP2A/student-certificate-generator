@@ -1,8 +1,21 @@
 'use client';
 
+import { Certificate } from '@/types/Certificate';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/card';
+import { useSession } from 'next-auth/react';
 
-export function UserSummary() {
+type UserSummaryProps = {
+  data: Certificate[];
+};
+
+export function UserSummary({ data }: UserSummaryProps) {
+  const { data: session } = useSession();
+  const studentData = data.filter((d) => d.alunoId === session?.user.id);
+  const hours = studentData.reduce(
+    (acc, curr) => acc + curr.quantidadeHoras,
+    0
+  );
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
       <Card>
@@ -22,7 +35,9 @@ export function UserSummary() {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">1 presence(s)</div>
+          <div className="text-2xl font-bold">
+            {studentData.length} presence(s)
+          </div>
         </CardContent>
       </Card>
       <Card>
@@ -46,7 +61,7 @@ export function UserSummary() {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">10 hour(s)</div>
+          <div className="text-2xl font-bold">{hours} hour(s)</div>
         </CardContent>
       </Card>
     </div>

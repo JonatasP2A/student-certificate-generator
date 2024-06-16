@@ -1,5 +1,7 @@
 'use client';
 
+import { Certificate } from '@/types/Certificate';
+import { useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
 import {
   CartesianGrid,
@@ -12,50 +14,43 @@ import {
   YAxis
 } from 'recharts';
 
-const data = [
-  {
-    name: '06/02/2024',
-    workload: 0,
-    amt: 0
-  },
-  {
-    name: '06/03/2024',
-    workload: 5,
-    amt: 5
-  },
-  {
-    name: '06/03/2024',
-    workload: 15,
-    amt: 15
-  },
-  {
-    name: '06/04/2024',
-    workload: 20,
-    amt: 20
-  },
-  {
-    name: '06/05/2024',
-    workload: 30,
-    amt: 30
-  },
-  {
-    name: '06/06/2024',
-    workload: 35,
-    amt: 35
-  }
-];
+type OverviewProps = {
+  data: Certificate[];
+};
 
-export function Overview() {
+export function Overview({ data }: OverviewProps) {
+  const { data: session } = useSession();
   const { resolvedTheme } = useTheme();
 
   const strokeColor = resolvedTheme === 'dark' ? '#adfa1d' : '#000';
+
+  const studentData = data.filter((d) => d.alunoId === session?.user.id);
+  const teacherData = data.filter(
+    (d) => d.nomePalestrante === session?.user.name
+  );
+
+  const filteredData =
+    session?.user.role === 'Admin' ? teacherData : studentData;
+
+  const dataToDisplay = filteredData.map((d, index) => {
+    let sum = 0;
+    for (let i = 0; i <= index; i++) {
+      sum += data[i].quantidadeHoras;
+    }
+
+    return {
+      name: d.nomeEvento,
+      workload: sum,
+      amt: sum
+    };
+  });
 
   return (
     <ResponsiveContainer width="100%" height={350}>
       <LineChart
         width={500}
         height={300}
-        data={data}
+        data={dataToDisplay}
         margin={{
           top: 5,
           right: 30,
