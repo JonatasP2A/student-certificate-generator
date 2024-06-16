@@ -25,7 +25,6 @@ import {
   Twitter,
   Upload,
   User,
-  User2Icon,
   UserX2Icon,
   X
 } from 'lucide-react';
@@ -37,7 +36,6 @@ export const Icons = {
   logo: Command,
   login: LogIn,
   close: X,
-  profile: User2Icon,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
