@@ -20,7 +20,6 @@ export async function getCertificates(): Promise<Certificate[]> {
 
 export default async function Page() {
   const data = await getCertificates();
-  console.log(data);
 
   return (
     <>
