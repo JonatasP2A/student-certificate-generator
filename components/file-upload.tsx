@@ -3,13 +3,12 @@
 import CSVReader, { IFileInfo } from 'react-csv-reader';
 import { Trash } from 'lucide-react';
 import Image from 'next/image';
-import { UploadFileResponse } from 'uploadthing/client';
 import { Button } from './ui/button';
 
 interface ImageUploadProps {
   onChange?: any;
-  onRemove: (value: UploadFileResponse[]) => void;
-  value: UploadFileResponse[];
+  onRemove: (value: any[]) => void;
+  value: any[];
 }
 
 export default function FileUpload({
