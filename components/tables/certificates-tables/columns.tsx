@@ -9,14 +9,14 @@ export const columns: ColumnDef<Certificate>[] = [
   //     <Checkbox
   //       checked={table.getIsAllPageRowsSelected()}
   //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //       aria-label="Select all"
+  //       aria-label="Selecionar tudo"
   //     />
   //   ),
   //   cell: ({ row }) => (
   //     <Checkbox
   //       checked={row.getIsSelected()}
   //       onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //       aria-label="Select row"
+  //       aria-label="Selecionar linha"
   //     />
   //   ),
   //   enableSorting: false,
@@ -24,19 +24,19 @@ export const columns: ColumnDef<Certificate>[] = [
   // },
   {
     accessorKey: 'nomeEvento',
-    header: 'EVENT'
+    header: 'EVENTO'
   },
   {
     accessorKey: 'nomePalestrante',
-    header: 'SPEAKER'
+    header: 'PALESTRANTE'
   },
   {
     accessorKey: 'quantidadeHoras',
-    header: 'HOURS'
+    header: 'HORAS'
   },
   {
     accessorKey: 'alunoId',
-    header: 'STUDENT ID'
+    header: 'ID DO ALUNO'
   }
   // {
   //   id: 'actions',

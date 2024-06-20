@@ -9,8 +9,8 @@ import { auth } from '@/auth';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Student Certificate Generator',
-  description: 'An application to generate certificates for students'
+  title: 'Gerador de Certificados para Estudantes',
+  description: 'Uma aplicação para gerar certificados para estudantes'
 };
 
 export default async function RootLayout({
@@ -20,7 +20,7 @@ export default async function RootLayout({
 }) {
   const session = await auth();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt" suppressHydrationWarning>
       <body className={`${inter.className} overflow-hidden`}>
         <NextTopLoader />
         <Providers session={session}>

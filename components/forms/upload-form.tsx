@@ -66,7 +66,7 @@ export const postEventParticipants = async (data: FileFormValues) => {
   );
 
   if (!response.ok) {
-    throw new Error('An error occurred while creating the user');
+    throw new Error('Um erro ocorreu durante a criação do usuário.');
   }
 
   return response;
@@ -76,7 +76,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const action = 'Create';
+  const action = 'Criar';
 
   const form = useForm<FileFormValues>({
     resolver: zodResolver(formSchema)
@@ -89,8 +89,8 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
 
       if (response.ok) {
         toast({
-          title: 'Success!',
-          description: 'Event saved successfully'
+          title: 'Sucesso!',
+          description: 'Evento salvo!'
         });
         router.refresh();
         router.push(`/dashboard`);
@@ -98,8 +98,8 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
+        title: 'Uh oh! Algo deu errado.',
+        description: 'Houve um problema com sua solicitação.'
       });
     } finally {
       setLoading(false);
@@ -120,11 +120,11 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>Título</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Event name"
+                      placeholder="Nome do evento"
                       {...field}
                     />
                   </FormControl>
@@ -137,7 +137,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
               name="date"
               render={({ field }) => (
                 <FormItem className="mt-auto flex flex-col">
-                  <FormLabel>Date of event</FormLabel>
+                  <FormLabel>Data do evento</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -151,7 +151,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
                           {field.value ? (
                             format(field.value, 'PPP')
                           ) : (
-                            <span>Pick a date</span>
+                            <span>Escolha uma data</span>
                           )}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
@@ -195,7 +195,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
               name="additionalHours"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Additional hours</FormLabel>
+                  <FormLabel>Horas complementares</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -213,7 +213,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
               name="speakerRegistration"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Speaker registration</FormLabel>
+                  <FormLabel>Matrícula do palestrante</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -231,7 +231,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
               name="organizerRegistration"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Organizer registration</FormLabel>
+                  <FormLabel>Matrícula do organizador</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -250,7 +250,7 @@ export const UploadForm: React.FC<UploadFormProps> = () => {
             name="file"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>File</FormLabel>
+                <FormLabel>Arquivo</FormLabel>
                 <FormControl>
                   <FileUpload
                     onChange={field.onChange}

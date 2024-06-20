@@ -21,7 +21,7 @@ import { useToast } from '../ui/use-toast';
 const formSchema = z
   .object({
     name: z.string(),
-    email: z.string().email({ message: 'Enter a valid email address' }),
+    email: z.string().email({ message: 'Digite um endereço de email válido' }),
     Matricula: z.string(),
     password: z.string(),
     confirmPassword: z.string()
@@ -30,7 +30,7 @@ const formSchema = z
     if (confirmPassword !== password) {
       ctx.addIssue({
         code: 'custom',
-        message: 'The passwords did not match',
+        message: 'As senhas não coincidem',
         path: ['confirmPassword']
       });
     }
@@ -54,7 +54,7 @@ export const postUser = async (data: UserFormValue) => {
   );
 
   if (!response.ok) {
-    throw new Error('An error occurred while creating the user');
+    throw new Error('Ocorreu um erro ao criar o usuário');
   }
 
   return response;
@@ -74,8 +74,8 @@ export default function UserSignInForm() {
     if (response.ok) {
       form.reset();
       toast({
-        title: 'Sign up successfuly',
-        description: 'Login with your new account',
+        title: 'Cadastro realizado com sucesso',
+        description: 'Faça login com sua nova conta',
         duration: 3000
       });
       router.push('/login');
@@ -95,10 +95,10 @@ export default function UserSignInForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Nome</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter your name..."
+                    placeholder="Digite seu nome..."
                     disabled={loading}
                     {...field}
                   />
@@ -117,7 +117,7 @@ export default function UserSignInForm() {
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="Enter your email..."
+                    placeholder="Digite seu email..."
                     disabled={loading}
                     {...field}
                   />
@@ -132,10 +132,10 @@ export default function UserSignInForm() {
             name="Matricula"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Registration</FormLabel>
+                <FormLabel>Matrícula</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Registration"
+                    placeholder="Digite sua matrícula..."
                     disabled={loading}
                     {...field}
                   />
@@ -150,11 +150,11 @@ export default function UserSignInForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Senha</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder="Enter your password..."
+                    placeholder="Digite sua senha..."
                     disabled={loading}
                     {...field}
                   />
@@ -169,11 +169,11 @@ export default function UserSignInForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Confirm password</FormLabel>
+                <FormLabel>Confirmar Senha</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder="Enter your password again..."
+                    placeholder="Digite sua senha novamente..."
                     disabled={loading}
                     {...field}
                   />
@@ -184,7 +184,7 @@ export default function UserSignInForm() {
           />
 
           <Button disabled={loading} className="ml-auto w-full" type="submit">
-            Sign In
+            Registrar
           </Button>
         </form>
       </Form>

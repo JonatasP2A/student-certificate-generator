@@ -17,7 +17,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Enter a valid email address' }),
+  email: z.string().email({ message: 'Digite um endereço de email válido' }),
   password: z.string()
 });
 
@@ -57,7 +57,7 @@ export default function UserAuthForm() {
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="Enter your email..."
+                    placeholder="Digite seu email..."
                     disabled={loading}
                     {...field}
                   />
@@ -72,11 +72,11 @@ export default function UserAuthForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Senha</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder="Enter your password..."
+                    placeholder="Digite sua senha..."
                     disabled={loading}
                     {...field}
                   />
@@ -87,7 +87,7 @@ export default function UserAuthForm() {
           />
 
           <Button disabled={loading} className="ml-auto w-full" type="submit">
-            Login With Email
+            Entrar com Email
           </Button>
         </form>
       </Form>

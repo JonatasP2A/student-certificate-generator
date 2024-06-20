@@ -23,8 +23,8 @@ export function Certificates({ data }: CertificatesProps) {
     <>
       <div className="flex items-start justify-between">
         <Heading
-          title={`Events (${dataTable.length})`}
-          description="Lectures you have already attended"
+          title={`Eventos (${dataTable.length})`}
+          description="Palestras que você já participou"
         />
       </div>
       <Separator />
