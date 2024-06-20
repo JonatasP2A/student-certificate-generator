@@ -5,8 +5,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Authentication',
-  description: 'Authentication forms built using the components.'
+  title: 'Autenticação',
+  description: 'Formulários de autenticação construídos usando os componentes.'
 };
 
 export default function SignInPage() {
@@ -41,9 +41,8 @@ export default function SignInPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo;This library has saved me countless hours of work and
-              helped me deliver stunning designs to my clients faster than ever
-              before.&rdquo;
+              &ldquo;Esta biblioteca me economizou inúmeras horas de trabalho e
+              me ajudou a entregar designs impressionantes para meus clientes mais rápido do que nunca.&rdquo;
             </p>
             <footer className="text-sm">Sofia Davis</footer>
           </blockquote>
@@ -53,27 +52,27 @@ export default function SignInPage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
+              Crie uma conta
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
+              Insira seu e-mail abaixo para criar sua conta
             </p>
           </div>
           <UserSignInForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{' '}
+            Ao clicar em continuar, você concorda com nossos{' '}
             <Link
               href="/terms"
               className="underline underline-offset-4 hover:text-primary"
             >
-              Terms of Service
+              Termos de Serviço
             </Link>{' '}
-            and{' '}
+            e nossa{' '}
             <Link
               href="/privacy"
               className="underline underline-offset-4 hover:text-primary"
             >
-              Privacy Policy
+              Política de Privacidade
             </Link>
             .
           </p>

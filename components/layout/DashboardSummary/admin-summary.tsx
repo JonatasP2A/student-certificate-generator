@@ -23,7 +23,7 @@ export function AdminSummary({ data }: AdminSummaryProps) {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Lectures Given</CardTitle>
+          <CardTitle className="text-sm font-medium">Palestras Ministradas</CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -39,14 +39,14 @@ export function AdminSummary({ data }: AdminSummaryProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
-            {teacherData.length} lecture(s)
+            {teacherData.length} palestra(s)
           </div>
         </CardContent>
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">
-            Total Hours Taught
+            Total de Horas Ministradas
           </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ export function AdminSummary({ data }: AdminSummaryProps) {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{hoursGiven} hour(s)</div>
+          <div className="text-2xl font-bold">{hoursGiven} hora(s)</div>
         </CardContent>
       </Card>
     </div>

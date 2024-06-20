@@ -15,8 +15,8 @@ export const CsvUploadData: React.FC<CsvUploadDataProps> = ({ data }) => {
     <>
       <div className="flex items-start justify-between">
         <Heading
-          title={`Users (${data.length})`}
-          description="Manage users (Client side table functionalities.)"
+          title={`Usuários (${data.length})`}
+          description="Gerenciar usuários (Funcionalidades da tabela no lado do cliente.)"
         />
       </div>
       <Separator />
