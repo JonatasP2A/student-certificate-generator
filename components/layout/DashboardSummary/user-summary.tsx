@@ -61,7 +61,7 @@ export function UserSummary({ data }: UserSummaryProps) {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{hours} hour(s)</div>
+          <div className="text-2xl font-bold">{hours} hora(s)</div>
         </CardContent>
       </Card>
     </div>

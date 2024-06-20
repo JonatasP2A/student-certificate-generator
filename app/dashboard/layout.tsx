@@ -3,8 +3,8 @@ import Sidebar from '@/components/layout/sidebar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Student Certificate Generator',
-  description: 'An application to generate certificates for students'
+  title: 'Gerador de Certificados para Estudantes',
+  description: 'Uma aplicação para gerar certificados para estudantes'
 };
 
 export default function DashboardLayout({

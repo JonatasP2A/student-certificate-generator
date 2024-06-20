@@ -5,8 +5,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Authentication',
-  description: 'Authentication forms built using the components.'
+  title: 'Autenticação',
+  description: 'Formulários de autenticação construídos usando os componentes.'
 };
 
 export default function AuthenticationPage() {
@@ -19,7 +19,7 @@ export default function AuthenticationPage() {
           'absolute right-4 top-4 md:right-8 md:top-8'
         )}
       >
-        Sign in
+        Entrar
       </Link>
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
         <div className="absolute inset-0 bg-zinc-900" />
@@ -41,9 +41,8 @@ export default function AuthenticationPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo;This library has saved me countless hours of work and
-              helped me deliver stunning designs to my clients faster than ever
-              before.&rdquo;
+              &ldquo;Esta biblioteca me economizou inúmeras horas de trabalho e
+              me ajudou a entregar designs impressionantes para meus clientes mais rápido do que nunca.&rdquo;
             </p>
             <footer className="text-sm">Sofia Davis</footer>
           </blockquote>
@@ -54,24 +53,24 @@ export default function AuthenticationPage() {
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email and your password to access your account
+              Insira seu e-mail e senha para acessar sua conta
             </p>
           </div>
           <UserAuthForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{' '}
+            Ao clicar em continuar, você concorda com nossos{' '}
             <Link
               href="/terms"
               className="underline underline-offset-4 hover:text-primary"
             >
-              Terms of Service
+              Termos de Serviço
             </Link>{' '}
-            and{' '}
+            e nossa{' '}
             <Link
               href="/privacy"
               className="underline underline-offset-4 hover:text-primary"
             >
-              Privacy Policy
+              Política de Privacidade
             </Link>
             .
           </p>

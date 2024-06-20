@@ -14,13 +14,13 @@ type paramsProps = {
 export default async function page({ searchParams }: paramsProps) {
   return (
     <>
-      <div className="flex-1 space-y-4  p-4 pt-6 md:p-8">
+      <div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
         <BreadCrumb items={breadcrumbItems} />
 
         <div className="flex items-start justify-between">
           <Heading
             title={`Upload`}
-            description="Upload file with the presence of students at your event"
+            description="Envie arquivos com a presença de estudantes no seu evento"
           />
         </div>
         <Separator />
