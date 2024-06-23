@@ -40,7 +40,7 @@ export function Overview({ data }: OverviewProps) {
 
     return {
       name: d.nomeEvento,
-      workload: sum,
+      evento: sum,
       amt: sum
     };
   });
@@ -65,7 +65,7 @@ export function Overview({ data }: OverviewProps) {
         <Legend />
         <Line
           type="monotone"
-          dataKey="workload"
+          dataKey="evento"
           stroke={strokeColor}
           activeDot={{ r: 8 }}
         />
