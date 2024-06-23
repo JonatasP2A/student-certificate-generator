@@ -35,8 +35,8 @@ export const columns: ColumnDef<Certificate>[] = [
     header: 'HORAS'
   },
   {
-    accessorKey: 'matricula',
-    header: 'MATRICULA'
+    accessorKey: 'alunoId',
+    header: 'ID DO ALUNO'
   }
   // {
   //   id: 'actions',
