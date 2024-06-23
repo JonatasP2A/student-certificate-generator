@@ -20,7 +20,7 @@ export function UserSummary({ data }: UserSummaryProps) {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Lectures</CardTitle>
+          <CardTitle className="text-sm font-medium">Total de presenças</CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -36,14 +36,14 @@ export function UserSummary({ data }: UserSummaryProps) {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
-            {studentData.length} presence(s)
+            {studentData.length} presença(s)
           </div>
         </CardContent>
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">
-            Workload Completed
+            Total de horas
           </CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
