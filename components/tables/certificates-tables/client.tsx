@@ -14,10 +14,12 @@ interface CertificatesProps {
 export function Certificates({ data }: CertificatesProps) {
   const { data: session } = useSession();
 
-  const dataTable =
-    session?.user.role === 'User'
-      ? data.filter((d) => d.alunoId === session?.user.id)
-      : data;
+  // const dataTable =
+  //   session?.user.role === 'User'
+  //     ? data.filter((d) => d.alunoId === session?.user.id)
+  //     : data;
+
+  const dataTable = data;
 
   return (
     <>
@@ -28,7 +30,7 @@ export function Certificates({ data }: CertificatesProps) {
         />
       </div>
       <Separator />
-      <DataTable searchKey="name" columns={columns} data={dataTable} />
+      <DataTable searchKey="nomeEvento" columns={columns} data={dataTable} />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { Certificate } from '@/types/Certificate';
+import { DownloadButton } from './DownloadButton';
 
 async function getCertificates(): Promise<Certificate[]> {
   // Buscar dados de uma API externa
@@ -29,6 +30,7 @@ export default async function page() {
           <h2 className="text-3xl font-bold tracking-tight">
             Olá, bem-vindo de volta 👋
           </h2>
+          <DownloadButton />
         </div>
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsContent value="overview" className="space-y-4">
