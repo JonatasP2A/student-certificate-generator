@@ -37,7 +37,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = url;
-    a.download = `certificado-${data.nomeEvento}.jpg`; // Specify the image file name and extension
+    a.download = `certificado-${data.nomeEvento}.png`; // Specify the image file name and extension
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
