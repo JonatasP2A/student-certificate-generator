@@ -18,6 +18,8 @@ export function Certificates({ data }: CertificatesProps) {
      session?.user.role === 'User'
        ? data.filter((d) => d.alunoId === session?.user.id)
        : data;
+    console.log(session?.user)
+    console.log(dataTable)
 
   //const dataTable = data;
 
