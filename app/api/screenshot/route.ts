@@ -18,10 +18,15 @@ export async function GET(request: Request) {
 			headless: true,
 		});
 		const page = await browser.newPage();
+		console.log('Navigating to URL...');
+
 		await page.goto(url, { waitUntil: 'networkidle2' });
 
 		// TO GET THE SCREENSHOT IN BINARY FORMAT
+		console.log('Taking screenshot...');
 		const screenshot = await page.screenshot({ type: "png" });
+		console.log('Screenshot taken successfully.');
+		
 		// set headers for binar response
 		const init = {
 			headers: {
