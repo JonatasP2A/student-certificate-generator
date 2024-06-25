@@ -3,12 +3,15 @@
 import { Button } from '@/components/ui/button';
 import { Certificate } from '@/types/Certificate';
 import { Download } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 
 interface CellActionProps {
   data: Certificate;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
+  const { data: session } = useSession();
+
   const handleDownload = async () => {
     try {
       const certificatePageUrl = new URL(
@@ -28,11 +31,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           encodeURIComponent(data.nomeEvento)
         );
 
-      // if (data.matricula)
-      //   certificatePageUrl.searchParams.set(
-      //     'matricula',
-      //     encodeURIComponent(data.matricula)
-      //   );
+      if (session?.user.matricula)
+        certificatePageUrl.searchParams.set(
+          'matricula',
+          encodeURIComponent(session.user.matricula)
+        );
 
       const response = await fetch(
         `/api/screenshot?url=${certificatePageUrl.toString()}`
