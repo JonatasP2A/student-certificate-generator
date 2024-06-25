@@ -15,7 +15,7 @@ export async function GET(request: Request) {
 	try {
 		browser = await puppeteer.launch();
 		const page = await browser.newPage();
-		await page.goto(url);
+		await page.goto(url, { waitUntil: 'networkidle2' });
 
 		// TO GET THE SCREENSHOT IN BINARY FORMAT
 		const screenshot = await page.screenshot({ type: "png" });
@@ -30,7 +30,7 @@ export async function GET(request: Request) {
 	} catch (error) {
 		return NextResponse.json(
 			{ error: "Something went wrong" },
-			{ status: 200 }
+			{ status: 400 }
 		);
 	} finally {
 		if (browser) {

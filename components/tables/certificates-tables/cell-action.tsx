@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use client';
 import { Button } from '@/components/ui/button';
 import { Certificate } from '@/types/Certificate';
@@ -9,38 +10,48 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const handleDownload = async () => {
-    const certificatePageUrl = new URL('/certificate', window.location.origin);
-
-    if (data.aluno)
-      certificatePageUrl.searchParams.set(
-        'aluno',
-        encodeURIComponent(data.aluno)
+    try {
+      const certificatePageUrl = new URL(
+        '/certificate',
+        window.location.origin
       );
 
-    if (data.nomeEvento)
-      certificatePageUrl.searchParams.set(
-        'palestra',
-        encodeURIComponent(data.nomeEvento)
+      if (data.aluno)
+        certificatePageUrl.searchParams.set(
+          'aluno',
+          encodeURIComponent(data.aluno)
+        );
+
+      if (data.nomeEvento)
+        certificatePageUrl.searchParams.set(
+          'palestra',
+          encodeURIComponent(data.nomeEvento)
+        );
+
+      // if (data.matricula)
+      //   certificatePageUrl.searchParams.set(
+      //     'matricula',
+      //     encodeURIComponent(data.matricula)
+      //   );
+
+      const response = await fetch(
+        `/api/screenshot?url=${certificatePageUrl.toString()}`
       );
-
-    // if (data.matricula)
-    //   certificatePageUrl.searchParams.set(
-    //     'matricula',
-    //     encodeURIComponent(data.matricula)
-    //   );
-
-    const response = await fetch(
-      `/api/screenshot?url=${certificatePageUrl.toString()}`
-    );
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = url;
-    a.download = `certificado-${data.nomeEvento}.png`; // Specify the image file name and extension
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = `certificado.png`; // Specify the image file name and extension
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+      alert(
+        'Ocorreu um erro ao baixar o certificado. Por favor, tente novamente.'
+      );
+    }
   };
 
   return (
