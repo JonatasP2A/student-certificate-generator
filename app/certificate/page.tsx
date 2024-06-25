@@ -7,7 +7,7 @@ export default function Page() {
   const searchParams = useSearchParams();
 
   const studentName = searchParams.get('aluno') || 'Nome do Aluno';
-  const course = searchParams.get('palestra') || 'Nome do Palestra';
+  const course = searchParams.get('palestra') || 'Nome da Palestra';
   const registration = searchParams.get('matricula') || '000000000';
 
   return (
@@ -15,7 +15,7 @@ export default function Page() {
       className="flex h-screen w-full items-center justify-center bg-white"
       id="certificate"
     >
-      <div className="flex h-screen w-9/12 flex-col items-center justify-center py-20">
+      <div className="flex h-screen w-11/12 flex-col items-center justify-center py-20">
         <div>
           <Image
             src="/cert-header-logos.png"
@@ -25,13 +25,13 @@ export default function Page() {
           />
         </div>
 
-        <h1 className="mb-5 text-3xl font-bold text-input">
+        <h1 className="mb-3 text-3xl font-bold text-input">
           CERTIFICADO DE ATIVIDADE COMPLEMENTAR
         </h1>
 
-        <div className="bg-green mb-5 h-1 w-full" />
+        <div className="mb-3 h-1 w-full bg-green" />
 
-        <h2 className="mb-5 text-3xl font-medium text-input">{studentName}</h2>
+        <h2 className="mb-3 text-3xl font-medium text-input">{studentName}</h2>
 
         <span className="text-xl text-input">
           Certificamos que o aluno, inscrito no curso de Sistemas de Informação

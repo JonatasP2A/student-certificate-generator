@@ -10,6 +10,8 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const isLogged = !!req.auth;
 
+  if (req.nextUrl.pathname.includes('/dashboard/certificate')) return;
+
   if (req.nextUrl.pathname === '/' && isLogged) {
     const url = new URL("/dashboard", req.url);
     return Response.redirect(url);
