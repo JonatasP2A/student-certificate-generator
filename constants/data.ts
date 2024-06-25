@@ -104,7 +104,7 @@ export const userNavItems: NavItem[] = [
   },
   {
     title: 'Events',
-    href: '/dashboard/events',
+    href: '/events',
     icon: 'laptop',
     label: 'events'
   }
@@ -112,20 +112,14 @@ export const userNavItems: NavItem[] = [
 
 export const adminNavItems: NavItem[] = [
   {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: 'dashboard',
-    label: 'Dashboard'
-  },
-  {
     title: 'Events',
-    href: '/dashboard/events',
+    href: '/events',
     icon: 'laptop',
     label: 'events'
   },
   {
     title: 'Upload',
-    href: '/dashboard/upload',
+    href: '/upload',
     icon: 'upload',
     label: 'upload'
   }

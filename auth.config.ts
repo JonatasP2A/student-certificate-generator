@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { NextAuthConfig } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 import { jwtDecode, JwtPayload } from "jwt-decode";
@@ -31,16 +32,18 @@ const authConfig = {
         })
 
         const data = await res.json()
+        console.log('[Login] Data -> ', data)
 
         if (data.message === "Login completed") {
           const decoded = jwtDecode<UserDecoded>(data.token);
-          console.log(decoded)
+          console.log('Decoded token -> ', decoded)
 
           const user = {
             id: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
             name: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
             email: decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
             role: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+            matricula: data.matricula,
             exp: decoded.exp
           };
           return user

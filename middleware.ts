@@ -10,7 +10,15 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const isLogged = !!req.auth;
 
-  if (req.nextUrl.pathname.includes('/dashboard/certificate')) return;
+  if (!isLogged) {
+    const url = new URL("/login", req.url);
+    return Response.redirect(url);
+  }
+
+  if (req.nextUrl.pathname === '/dashboard' && isLogged && req.auth?.user.role === 'Admin') {
+    const url = new URL("/events", req.url);
+    return Response.redirect(url);
+  }
 
   if (req.nextUrl.pathname === '/' && isLogged) {
     const url = new URL("/dashboard", req.url);
@@ -20,10 +28,10 @@ export default auth((req) => {
     const url = new URL("/login", req.url);
     return Response.redirect(url);
   }
-  if (!isLogged) {
+  if (req.nextUrl.pathname === '/events' && !isLogged) {
     const url = new URL("/login", req.url);
     return Response.redirect(url);
   }
 });
 
-export const config = { matcher: ['/dashboard/:path*', '/'] };
+export const config = { matcher: ['/dashboard', '/', '/events', '/upload'] };
