@@ -34,4 +34,4 @@ export default auth((req) => {
   }
 });
 
-export const config = { matcher: ['/dashboard', '/', '/events', '/upload'] };
+export const config = { matcher: ['/dashboard', '/', '/events', '/upload', '/certificate'] };

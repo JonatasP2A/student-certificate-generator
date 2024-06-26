@@ -63,6 +63,8 @@ const authConfig = {
         token.role = user.role
         // @ts-ignore
         token.exp = user.exp
+        // @ts-ignore
+        token.matricula = user.matricula
         
         return token
       }
@@ -74,6 +76,8 @@ const authConfig = {
       session.user.id = token?.id || ''
       // @ts-ignore
       session.user.role = token?.role || ''
+      // @ts-ignore
+      session.user.matricula = token?.matricula || ''
       // @ts-ignore
       session.expires = new Date(token?.exp * 1000)
 

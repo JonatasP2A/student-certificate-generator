@@ -1,15 +1,30 @@
+'use client';
+
 import { DashboardSummary } from '@/components/layout/DashboardSummary/dashboard-summary';
 import { Overview } from '@/components/overview';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { Certificate } from '@/types/Certificate';
+import { Session } from 'next-auth';
+import { getSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
-async function getCertificates(): Promise<Certificate[]> {
-  // Buscar dados de uma API externa
-  const res = await fetch(
-    'https://projeto-de-software.onrender.com/api/Certificado/List'
+async function getCertificates(
+  session: Session | null
+): Promise<Certificate[]> {
+  const url = new URL(
+    '/api/Certificado/List',
+    process.env.NEXT_PUBLIC_BASE_URL_API
   );
+
+  if (session?.user.id) {
+    url.searchParams.append('AlunoId', session.user.id);
+  }
+  // Buscar dados de uma API externa
+  const res = await fetch(url, {
+    cache: 'no-cache'
+  });
 
   if (!res.ok) {
     // Isso ativa o tratamento de erro mais próximo, como `error.js` Error Boundary
@@ -19,8 +34,18 @@ async function getCertificates(): Promise<Certificate[]> {
   return res.json();
 }
 
-export default async function page() {
-  const data = await getCertificates();
+export default function Page() {
+  const [data, setData] = useState<Certificate[]>([]);
+
+  const getData = async () => {
+    const session = await getSession();
+    const data = await getCertificates(session);
+    setData(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <ScrollArea className="h-full">

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Certificate } from '@/types/Certificate';
 import { Download } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface CellActionProps {
   data: Certificate;
@@ -11,6 +12,7 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleDownload = async () => {
     try {
@@ -19,36 +21,19 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         window.location.origin
       );
 
-      if (data.aluno)
-        certificatePageUrl.searchParams.set(
-          'aluno',
-          encodeURIComponent(data.aluno)
-        );
+      if (session?.user.name)
+        certificatePageUrl.searchParams.set('aluno', session.user.name);
 
       if (data.nomeEvento)
-        certificatePageUrl.searchParams.set(
-          'palestra',
-          encodeURIComponent(data.nomeEvento)
-        );
+        certificatePageUrl.searchParams.set('palestra', data.nomeEvento);
 
       if (session?.user.matricula)
         certificatePageUrl.searchParams.set(
           'matricula',
-          encodeURIComponent(session.user.matricula)
+          session.user.matricula
         );
 
-      const response = await fetch(
-        `/api/screenshot?url=${certificatePageUrl.toString()}`
-      );
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = `certificado.png`; // Specify the image file name and extension
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
+      router.push(certificatePageUrl.toString());
     } catch (error) {
       console.error(error);
       alert(
