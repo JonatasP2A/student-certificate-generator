@@ -1,5 +1,14 @@
 import { NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+
+let chrome: any = {}
+let puppeteer: any;
+
+if (process.env.NODE_ENV === 'production') {
+	chrome = require('chrome-aws-lambda');
+	puppeteer = require('puppeteer-core');
+} else {
+	puppeteer = require('puppeteer');
+}
 
 export async function GET(request: Request) {
 	const { searchParams } = new URL(request.url);
@@ -12,15 +21,26 @@ export async function GET(request: Request) {
 		);
 	}
 	let browser;
-	try {
-		browser = await puppeteer.launch({
-			args: ['--no-sandbox', '--disable-setuid-sandbox'],
+
+	let options = {};
+
+	if (process.env.NODE_ENV === 'production') {
+		options = {
+			args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
+			defaultViewport: chrome.defaultViewport,
+			executablePath: await chrome.executablePath,
 			headless: true,
-		});
+			ignoreHTTPSErrors: true,
+		}
+	}
+
+	try {
+		browser = await puppeteer.launch(options);
+
 		const page = await browser.newPage();
 		console.log('Navigating to URL...');
 
-		await page.goto(url, { waitUntil: 'networkidle2' });
+		await page.goto(url);
 
 		// TO GET THE SCREENSHOT IN BINARY FORMAT
 		console.log('Taking screenshot...');
