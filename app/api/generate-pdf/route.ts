@@ -14,10 +14,10 @@ export async function POST(req: NextRequest) {
       method: 'post',
       url: 'https://pdfstore.dev/api/generate',
       headers: {
-        authorization: `Bearer ${process.env.PDFSTORE_API_KEY}`,
+        authorization: `Bearer ${process.env.NEXT_PUBLIC_PDFSTORE_API_KEY}`,
       },
       data: {
-        projectId: Number(process.env.PDFSTORE_PROJECT_ID),
+        projectId: Number(process.env.NEXT_PUBLIC_PDFSTORE_PROJECT_ID),
         templateUrl: body.url
       }
     })
