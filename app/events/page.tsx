@@ -17,7 +17,7 @@ async function getCertificates(
     process.env.NEXT_PUBLIC_BASE_URL_API
   );
 
-  if (session?.user.id) {
+  if (session?.user.id && session.user.role !== 'Admin') {
     url.searchParams.append('AlunoId', session.user.id);
   }
   // Buscar dados de uma API externa
