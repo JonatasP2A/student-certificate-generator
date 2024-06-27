@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     const response = await axios({
       method: 'post',
-      url: 'https://pdfstore.dev/api/generate',
+      url: process.env.NEXT_PUBLIC_PDFSTORE_API_URL,
       headers: {
         authorization: `Bearer ${process.env.NEXT_PUBLIC_PDFSTORE_API_KEY}`,
       },
