@@ -2,10 +2,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from 'axios'
 
-export const config = {
-  maxDuration: 50,
-};
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -23,7 +19,8 @@ export async function POST(req: NextRequest) {
       data: {
         projectId: Number(process.env.NEXT_PUBLIC_PDFSTORE_PROJECT_ID),
         templateUrl: body.url
-      }
+      },
+      timeout: 50000
     })
 
     return NextResponse.json(response.data)
