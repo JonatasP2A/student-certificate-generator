@@ -10,10 +10,13 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const isLogged = !!req.auth;
 
+  if (req.nextUrl.pathname === '/certificate') return;
+  
   if (!isLogged) {
     const url = new URL("/login", req.url);
     return Response.redirect(url);
   }
+
 
   if (req.nextUrl.pathname === '/dashboard' && isLogged && req.auth?.user.role === 'Admin') {
     const url = new URL("/events", req.url);
