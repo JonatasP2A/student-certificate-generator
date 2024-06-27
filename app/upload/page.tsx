@@ -3,7 +3,7 @@ import { UploadForm } from '@/components/forms/upload-form';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 
-const breadcrumbItems = [{ title: 'Upload', link: '/dashboard/upload' }];
+const breadcrumbItems = [{ title: 'Upload', link: '/upload' }];
 
 type paramsProps = {
   searchParams: {

@@ -7,7 +7,7 @@ import { Session } from 'next-auth';
 import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
-const breadcrumbItems = [{ title: 'Events', link: '/dashboard/events' }];
+const breadcrumbItems = [{ title: 'Events', link: '/events' }];
 
 async function getCertificates(
   session: Session | null
