@@ -33,10 +33,10 @@ _If you are looking for a React admin dashboard starter, here is the [repo](http
 | Pages                                                                             | Specifications                                                                                        |
 | :-------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------- |
 | [Signup](https://next-shadcn-dashboard-starter.vercel.app/)                       | Authentication with **NextAuth** supports Social logins and email logins(Enter dummy email for demo). |
-| [Dashboard](https://next-shadcn-dashboard-starter.vercel.app/dashboard)           | Cards with recharts graphs for analytics.                                                             |
-| [Events](https://next-shadcn-dashboard-starter.vercel.app/dashboard/user)         | Tanstack tables with events details client side searching, pagination                                 |
-| [Upload](https://next-shadcn-dashboard-starter.vercel.app/dashboard/upload)       | A Event Form with Uploadthing to support file uploading with dropzone.                                |
-| [Not Found](https://next-shadcn-dashboard-starter.vercel.app/dashboard/notfound)  | Not Found Page Added in the root level                                                                |
+| [Dashboard](https://next-shadcn-dashboard-starter.vercel.app/dashboard)                   | Cards with recharts graphs for analytics.                                                             |
+| [Events](https://next-shadcn-dashboard-starter.vercel.app/events)                         | Tanstack tables with events details client side searching, pagination                                 |
+| [Upload](https://next-shadcn-dashboard-starter.vercel.app/upload)       | A Event Form with Uploadthing to support file uploading with dropzone.                                |
+| [Not Found](https://next-shadcn-dashboard-starter.vercel.app/notfound)  | Not Found Page Added in the root level                                                                |
 | -                                                                                 | -                                                                                                     |
 
 ## Getting Started
